@@ -1,16 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import { FiMenu } from "react-icons/fi";
 
 export const Header = () => {
 	return (
-		<header className="flex flex-row items-center justify-between p-4 bg-green">
-			<div>
-				<Link
-					href="/"
-					className="flex flex-row items-center justify-center gap-2"
-				>
+		<header className="flex items-center justify-between p-4 bg-green">
+			<div className="flex items-center gap-2">
+				<Link href="/" className="flex items-center gap-2">
 					<Image
 						src="/logo.png"
 						width={40}
@@ -18,16 +14,11 @@ export const Header = () => {
 						alt="Logo"
 						className="shadow-xl rounded-full"
 					/>
-					<h1 className="text-xl text-white align-middle">
-						Project Habla Mucho
-					</h1>
+					<h1 className="text-xl text-white">Project Habla Mucho</h1>
 				</Link>
 			</div>
 			<div>
-				<button
-					type="button"
-					className="flex flex-row items-start justify-center"
-				>
+				<button type="button" className="flex items-center justify-center">
 					<FiMenu size={24} />
 				</button>
 			</div>
