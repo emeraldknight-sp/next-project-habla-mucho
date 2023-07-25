@@ -1,9 +1,11 @@
-import { FiSearch, FiUser } from "react-icons/fi";
+import Image from "next/image";
+
 import moment from "moment";
 import "moment/locale/pt-br";
 
+import { FiSearch, FiUser } from "react-icons/fi";
+
 import { Container } from "@/components/Container";
-import Image from "next/image";
 
 export default function Home() {
 	const date = moment().format("LL");
@@ -84,7 +86,7 @@ export default function Home() {
 						{arrayDialogs.map((dialog, index) => (
 							<li
 								key={index}
-								className={`flex flex-col items-center justify-center gap-2 bg-gradient-to-tr ${dialog.color} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 hover:scale-95 hover:brightness-90`}
+								className={`flex flex-col items-center justify-center gap-2 bg-gradient-to-tr ${dialog.color} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 lg:hover:scale-95 lg:hover:brightness-90 active:brightness-90 `}
 							>
 								<figure>
 									<Image
