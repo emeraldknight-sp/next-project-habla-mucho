@@ -1,41 +1,43 @@
-export const optionsDialogs = [
+import { optionDialog } from "@/interfaces/optionDialog";
+
+export const optionsDialogs: optionDialog[] = [
 	{
-		title: "Random",
+		title: "Aleatório",
 		icon: "/surprise.png",
 		color: "from-green to-blue",
 	},
 	{
-		title: "Travel",
+		title: "Viagens",
 		icon: "/travel.png",
 		color: "from-purple to-blue",
 	},
 	{
-		title: "Survival",
+		title: "Sobrevivência",
 		icon: "/survival.png",
 		color: "from-pink to-purple",
 	},
 	{
+		title: "Negócios",
 		color: "from-yellow to-red",
-		title: "Business",
 		icon: "/handshake.png",
 	},
 	{
-		title: "Customer service",
+		title: "Atendimento",
 		icon: "/conversation.png",
 		color: "from-blue to-lightBlue",
 	},
 	{
-		title: "Culture",
+		title: "Cultura",
 		icon: "/drum.png",
 		color: "from-blue to-green",
 	},
 	{
-		title: "Funny",
+		title: "Diversão",
 		icon: "/fun.png",
 		color: "from-red to-yellow",
 	},
 	{
-		title: "Educational",
+		title: "Educacional",
 		icon: "/book.png",
 		color: "from-red to-pink",
 	},
