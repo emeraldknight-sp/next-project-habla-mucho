@@ -16,11 +16,11 @@ export const SidebarRight = ({ showSidebarRight }: SidebarRightProps) => {
 			<div className="flex flex-col items-center gap-2 p-4">
 				<figure>
 					<Image
-						src="/avatar.jpg"
+						src="/avatar.png"
 						className="rounded-full ring-2 ring-green"
 						width={100}
 						height={100}
-						alt="profile icon"
+						alt="avatar profile"
 					/>
 				</figure>
 				<div className="flex flex-col items-center gap-1">

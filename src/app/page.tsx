@@ -3,13 +3,15 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { FiCalendar, FiSearch, FiUser } from "react-icons/fi";
+import { FiCalendar, FiSearch } from "react-icons/fi";
 import moment from "moment";
 import "moment/locale/pt-br";
 
 import { Main } from "@/components/Main";
 import { Navbar } from "@/components/Navbar";
 import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
+
+import { optionsDialogs } from "@/mock/optionsDialogs";
 
 export default function Home() {
 	const date = moment().format("LL");
@@ -30,49 +32,6 @@ export default function Home() {
 		}
 	};
 
-	const arrayDialogs = [
-		{
-			title: "Random",
-			icon: "/surprise.png",
-			color: "from-green to-blue",
-		},
-		{
-			title: "Travel",
-			icon: "/travel.png",
-			color: "from-purple to-blue",
-		},
-		{
-			title: "Survival",
-			icon: "/survival.png",
-			color: "from-pink to-purple",
-		},
-		{
-			color: "from-yellow to-red",
-			title: "Business",
-			icon: "/handshake.png",
-		},
-		{
-			title: "Customer service",
-			icon: "/conversation.png",
-			color: "from-blue to-lightBlue",
-		},
-		{
-			title: "Culture",
-			icon: "/drum.png",
-			color: "from-blue to-green",
-		},
-		{
-			title: "Funny",
-			icon: "/fun.png",
-			color: "from-red to-yellow",
-		},
-		{
-			title: "Educational",
-			icon: "/book.png",
-			color: "from-red to-pink",
-		},
-	];
-
 	return (
 		<>
 			<div className="flex flex-row my-14">
@@ -91,11 +50,15 @@ export default function Home() {
 									Olá! Que bom te ver por aqui
 								</p>
 							</div>
-							<div>
-								<figure className="p-2 rounded-full shadow-md">
-									<FiUser size={24} />
-								</figure>
-							</div>
+							<figure>
+								<Image
+									src="/avatar.png"
+									className="rounded-full shadow-md"
+									width={40}
+									height={40}
+									alt="avatar profile"
+								/>
+							</figure>
 						</div>
 						<div className="flex flex-row items-center gap-2 bg-lightGray rounded-md p-2">
 							<input
@@ -112,7 +75,7 @@ export default function Home() {
 					</div>
 					<nav className="flex flex-col gap-4 bg-white rounded-md p-2">
 						<ul className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-							{arrayDialogs.map((dialog, index) => (
+							{optionsDialogs.map((dialog, index) => (
 								<li
 									key={index}
 									className={`flex flex-col items-center justify-center gap-2 bg-gradient-to-tr ${dialog.color} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 lg:hover:scale-95 lg:hover:brightness-90 active:brightness-90 `}
