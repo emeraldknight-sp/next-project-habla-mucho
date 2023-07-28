@@ -1,17 +1,34 @@
 "use client";
 
 import Image from "next/image";
+import React, { useState } from "react";
 
+import { FiCalendar, FiSearch, FiUser } from "react-icons/fi";
 import moment from "moment";
 import "moment/locale/pt-br";
 
-import { FiSearch, FiUser } from "react-icons/fi";
-
 import { Main } from "@/components/Main";
-import { Header } from "@/components/Header";
+import { Navbar } from "@/components/Navbar";
+import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
 
 export default function Home() {
 	const date = moment().format("LL");
+
+	const [showSidebarLeft, setShowSidebarLeft] = useState(false);
+	const [showSidebarRight, setShowSidebarRight] = useState(false);
+
+	const handleClick = (side: string) => {
+		if (side === "left") {
+			setShowSidebarLeft(!showSidebarLeft);
+			setShowSidebarRight(false);
+		} else if (side === "right") {
+			setShowSidebarRight(!showSidebarRight);
+			setShowSidebarLeft(false);
+		} else {
+			setShowSidebarLeft(false);
+			setShowSidebarRight(false);
+		}
+	};
 
 	const arrayDialogs = [
 		{
@@ -58,13 +75,18 @@ export default function Home() {
 
 	return (
 		<>
-			<Header />
-			<div className="flex flex-row">
+			<div className="flex flex-row my-14">
+				<SidebarLeft showSidebarLeft={showSidebarLeft} />
 				<Main>
 					<div className="bg-white rounded-md p-2 mb-4">
 						<div className="flex flex-row items-center justify-between mb-2 lg:hidden">
 							<div className="md:flex md:flex-row md:items-center md:justify-around md:flex-1 md:gap-1">
-								<p className="text-sm md:text-lg">{date}</p>
+								<p className="text-sm md:text-lg flex flex-row items-center gap-1 align-middle">
+									<span>
+										<FiCalendar size={16} />
+									</span>
+									{date}
+								</p>
 								<p className="text-sm md:text-lg">
 									Olá! Que bom te ver por aqui
 								</p>
@@ -109,7 +131,9 @@ export default function Home() {
 						</ul>
 					</nav>
 				</Main>
+				<SidebarRight showSidebarRight={showSidebarRight} />
 			</div>
+			<Navbar handleClick={handleClick} />
 		</>
 	);
 }
