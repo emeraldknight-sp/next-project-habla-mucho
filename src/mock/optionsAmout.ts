@@ -1,0 +1,1 @@
+export const optionsAmount: string[] = ["2", "3", "4", "5"];
