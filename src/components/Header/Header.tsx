@@ -1,4 +1,3 @@
-// import { FiMenu } from "react-icons/fi";
 import { Container } from "../Container";
 import { Logo } from "../Logo";
 

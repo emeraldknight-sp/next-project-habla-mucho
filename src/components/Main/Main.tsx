@@ -1,13 +1,10 @@
 import { Container } from "../Container";
-import { ReactNode } from "react";
 
-interface MainProps {
-	children: ReactNode;
-}
+import { MainProps } from "@/interfaces/MainProps";
 
 export const Main = ({ children }: MainProps) => {
 	return (
-		<main className="flex flex-1 p-4 my-14">
+		<main className="flex flex-1 p-4">
 			<Container>{children}</Container>
 		</main>
 	);
