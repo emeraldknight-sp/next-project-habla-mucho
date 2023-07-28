@@ -78,17 +78,23 @@ export default function Home() {
 							{optionsDialogs.map((dialog, index) => (
 								<li
 									key={index}
-									className={`flex flex-col items-center justify-center gap-2 bg-gradient-to-tr ${dialog.color} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 lg:hover:scale-95 lg:hover:brightness-90 active:brightness-90 `}
+									className={`flex flex-row items-center justify-center bg-gradient-to-tr ${dialog.color} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 lg:hover:scale-95 lg:hover:brightness-90 active:brightness-90 `}
 								>
-									<figure>
-										<Image
-											src={`${dialog.icon}`}
-											width={64}
-											height={64}
-											alt="dialog option"
-										/>
-									</figure>
-									<span>{dialog.title}</span>
+									<button
+										type="button"
+										className="flex flex-col items-center justify-center gap-2"
+										onClick={() => console.log("Oi")}
+									>
+										<figure>
+											<Image
+												src={`${dialog.icon}`}
+												width={64}
+												height={64}
+												alt="icon"
+											/>
+										</figure>
+										<span>{dialog.title}</span>
+									</button>
 								</li>
 							))}
 						</ul>
