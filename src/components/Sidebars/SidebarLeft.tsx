@@ -1,5 +1,7 @@
 import React from "react";
 
+import toast from "react-hot-toast";
+
 import Image from "next/image";
 
 import { Container } from "../Container";
@@ -23,6 +25,9 @@ export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
 		localStorage.setItem("selectedPeopleCount", selectedPeopleCount);
 	};
 
+	const notify = () =>
+		toast.error("Em desenvolvimento.", { id: "development" });
+
 	return (
 		<div
 			className={`fixed top-14 w-full h-screen transition-all duration-300 ${
@@ -43,7 +48,11 @@ export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
 										? "bg-green text-white"
 										: "bg-lightGray text-black"
 								}`}
-								onClick={() => handleLanguageChange(option.id)}
+								onClick={() =>
+									option.language === "EN"
+										? handleLanguageChange(option.id)
+										: notify()
+								}
 							>
 								<figure>
 									<Image
@@ -72,7 +81,11 @@ export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
 										? "bg-yellow text-white"
 										: "bg-lightGray text-black"
 								}`}
-								onClick={() => handlePeopleCountChange(option)}
+								onClick={() =>
+									Number(option) === 2
+										? handlePeopleCountChange(option)
+										: notify()
+								}
 							>
 								<span className="text-md font-bold">{option} pessoas</span>
 							</button>
