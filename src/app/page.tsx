@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import { FiCalendar, FiSearch } from "react-icons/fi";
@@ -11,10 +13,11 @@ import { Main } from "@/components/Main";
 import { Navbar } from "@/components/Navbar";
 import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
 
-import { optionsDialogs } from "@/mock/optionsDialogs";
+import { AppProvider } from "@/context/AppContext";
 
 export default function Home() {
 	const date = moment().format("LL");
+	const router = useRouter();
 
 	const [showSidebarLeft, setShowSidebarLeft] = useState(false);
 	const [showSidebarRight, setShowSidebarRight] = useState(false);
@@ -32,8 +35,52 @@ export default function Home() {
 		}
 	};
 
+	const optionsDialogs = [
+		{
+			title: "Aleatório",
+			icon: "/surprise.png",
+			color: "from-green to-blue",
+		},
+		{
+			title: "Viagens",
+			icon: "/travel.png",
+			color: "from-purple to-blue",
+			color2: "blue",
+		},
+		{
+			title: "Sobrevivência",
+			icon: "/survival.png",
+			color: "from-pink to-purple",
+		},
+		{
+			title: "Negócios",
+			icon: "/handshake.png",
+			color: "from-yellow to-red",
+		},
+		{
+			title: "Atendimento",
+			icon: "/conversation.png",
+			color: "from-blue to-lightBlue",
+		},
+		{
+			title: "Cultura",
+			icon: "/drum.png",
+			color: "from-blue to-green",
+		},
+		{
+			title: "Diversão",
+			icon: "/fun.png",
+			color: "from-red to-yellow",
+		},
+		{
+			title: "Educacional",
+			icon: "/book.png",
+			color: "from-red to-pink",
+		},
+	];
+
 	return (
-		<>
+		<AppProvider>
 			<div className="flex flex-row my-14">
 				<SidebarLeft showSidebarLeft={showSidebarLeft} />
 				<Main>
@@ -83,7 +130,9 @@ export default function Home() {
 									<button
 										type="button"
 										className="flex flex-col items-center justify-center gap-2"
-										onClick={() => console.log("Oi")}
+										onClick={() =>
+											router.push(`/dialog/${dialog.title.toLowerCase()}`)
+										}
 									>
 										<figure>
 											<Image
@@ -103,6 +152,6 @@ export default function Home() {
 				<SidebarRight showSidebarRight={showSidebarRight} />
 			</div>
 			<Navbar handleClick={handleClick} />
-		</>
+		</AppProvider>
 	);
 }

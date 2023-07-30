@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Image from "next/image";
 
@@ -8,23 +8,10 @@ import { optionsAmount } from "@/mock/optionsAmout";
 import { optionsLanguage } from "@/mock/optionsLanguage";
 
 import { SidebarLeftProps } from "@/interfaces/sidebarLeftProps";
+import { useApp } from "@/context/AppContext";
 
 export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
-	const [language, setLanguage] = useState("");
-	const [peopleCount, setPeopleCount] = useState("");
-
-	useEffect(() => {
-		const storedLanguage = localStorage.getItem("selectedLanguage");
-		const storedPeopleCount = localStorage.getItem("selectedPeopleCount");
-
-		if (storedLanguage) {
-			setLanguage(storedLanguage);
-		}
-
-		if (storedPeopleCount) {
-			setPeopleCount(storedPeopleCount);
-		}
-	}, []);
+	const { language, peopleCount, setLanguage, setPeopleCount } = useApp();
 
 	const handleLanguageChange = (selectedLanguage: string) => {
 		setLanguage(selectedLanguage);
