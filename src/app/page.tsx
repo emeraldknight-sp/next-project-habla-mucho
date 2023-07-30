@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+import { Toaster } from "react-hot-toast";
 import { FiCalendar, FiSearch } from "react-icons/fi";
 import moment from "moment";
 import "moment/locale/pt-br";
@@ -81,6 +82,7 @@ export default function Home() {
 
 	return (
 		<AppProvider>
+			<Toaster position="bottom-center" reverseOrder={false} />
 			<div className="flex flex-row my-14">
 				<SidebarLeft showSidebarLeft={showSidebarLeft} />
 				<Main>
