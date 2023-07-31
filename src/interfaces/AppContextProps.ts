@@ -1,6 +1,6 @@
 export interface AppContextProps {
 	language: string;
-	peopleCount: string;
+	peopleCount: number;
 	setLanguage: (selectedLanguage: string) => void;
-	setPeopleCount: (selectedPeopleCount: string) => void;
+	setPeopleCount: (selectedPeopleCount: number) => void;
 }
