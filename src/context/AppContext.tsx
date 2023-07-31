@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+"use client";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { AppContextProps } from "@/interfaces/AppContextProps";
@@ -6,14 +7,14 @@ import { AppProviderProps } from "@/interfaces/AppProviderProps";
 
 const AppContext = createContext<AppContextProps>({
 	language: "",
-	peopleCount: "",
-	setLanguage: () => {},
-	setPeopleCount: () => {},
+	peopleCount: 0,
+	setLanguage: () => "",
+	setPeopleCount: () => 0,
 });
 
 function AppProvider({ children }: AppProviderProps) {
 	const [language, setLanguage] = useState("");
-	const [peopleCount, setPeopleCount] = useState("");
+	const [peopleCount, setPeopleCount] = useState(0);
 
 	useEffect(() => {
 		const storedLanguage = localStorage.getItem("selectedLanguage");
@@ -24,7 +25,7 @@ function AppProvider({ children }: AppProviderProps) {
 		}
 
 		if (storedPeopleCount) {
-			setPeopleCount(storedPeopleCount);
+			setPeopleCount(Number(storedPeopleCount));
 		}
 	}, []);
 
