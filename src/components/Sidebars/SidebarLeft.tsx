@@ -20,9 +20,9 @@ export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
 		localStorage.setItem("selectedLanguage", selectedLanguage);
 	};
 
-	const handlePeopleCountChange = (selectedPeopleCount: string) => {
+	const handlePeopleCountChange = (selectedPeopleCount: number) => {
 		setPeopleCount(selectedPeopleCount);
-		localStorage.setItem("selectedPeopleCount", selectedPeopleCount);
+		localStorage.setItem("selectedPeopleCount", selectedPeopleCount.toString());
 	};
 
 	const notify = () =>
@@ -49,7 +49,7 @@ export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
 										: "bg-lightGray text-black"
 								}`}
 								onClick={() =>
-									option.language === "EN"
+									option.id === "EN"
 										? handleLanguageChange(option.id)
 										: notify()
 								}
@@ -82,9 +82,7 @@ export const SidebarLeft = ({ showSidebarLeft }: SidebarLeftProps) => {
 										: "bg-lightGray text-black"
 								}`}
 								onClick={() =>
-									Number(option) === 2
-										? handlePeopleCountChange(option)
-										: notify()
+									2 === option ? handlePeopleCountChange(option) : notify()
 								}
 							>
 								<span className="text-md font-bold">{option} pessoas</span>
