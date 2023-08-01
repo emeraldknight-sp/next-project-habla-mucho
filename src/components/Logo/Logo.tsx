@@ -4,7 +4,7 @@ import Link from "next/link";
 export const Logo = () => {
 	return (
 		<div className="flex items-center gap-2">
-			<Link href="/" className="flex items-center gap-2">
+			<Link href="/" className="flex items-center gap-2 outline-none">
 				<Image
 					src="/logo.png"
 					width={40}
