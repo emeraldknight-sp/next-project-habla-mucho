@@ -79,20 +79,20 @@ export default function Home() {
 	];
 
 	return (
-		<AppProvider>
+		<>
 			<div className="flex flex-row my-14">
 				<SidebarLeft showSidebarLeft={showSidebarLeft} />
 				<Main>
 					<div className="bg-white rounded-md p-2 mb-4">
 						<div className="flex flex-row items-center justify-between mb-2 lg:hidden">
 							<div className="md:flex md:flex-row md:items-center md:justify-around md:flex-1 md:gap-1">
-								<p className="text-sm md:text-lg flex flex-row items-center gap-1 align-middle">
+								<p className="text-sm md:text-md flex flex-row items-center gap-1 align-middle">
 									<span>
 										<FiCalendar size={16} />
 									</span>
 									{date}
 								</p>
-								<p className="text-sm md:text-lg">
+								<p className="text-sm md:text-md">
 									Olá! Que bom te ver por aqui
 								</p>
 							</div>
@@ -112,7 +112,7 @@ export default function Home() {
 								className="bg-transparent text-sm outline-none w-full"
 								placeholder="Buscar..."
 							/>
-							<button type="button">
+							<button type="button" className="outline-none">
 								<span>
 									<FiSearch size={24} />
 								</span>
@@ -120,7 +120,7 @@ export default function Home() {
 						</div>
 					</div>
 					<nav className="flex flex-col gap-4 bg-white rounded-md p-2">
-						<ul className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+						<ul className="grid grid-cols-2 lg:grid-cols-2 gap-4">
 							{optionsDialogs.map((dialog, index) => (
 								<li
 									key={index}
@@ -128,7 +128,7 @@ export default function Home() {
 								>
 									<button
 										type="button"
-										className="flex flex-col items-center justify-center gap-2"
+										className="flex flex-col items-center justify-center gap-2 outline-none"
 										onClick={() =>
 											router.push(`/dialog/${dialog.title.toLowerCase()}`)
 										}
@@ -151,6 +151,6 @@ export default function Home() {
 				<SidebarRight showSidebarRight={showSidebarRight} />
 			</div>
 			<Navbar handleClick={handleClick} />
-		</AppProvider>
+		</>
 	);
 }

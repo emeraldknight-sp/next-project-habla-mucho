@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { AppProvider } from "@/context/AppContext";
 
 import "./globals.css";
+import { NavbarProvider } from "@/context/NavbarContext";
 
 export const metadata: Metadata = {
 	title: "Project Habla Mucho",
@@ -20,9 +21,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
 		<html lang="en">
 			<body>
 				<AppProvider>
-					<Toaster position="bottom-center" reverseOrder={false} />
-					<Header />
-					{children}
+					<NavbarProvider>
+						<Toaster position="bottom-center" reverseOrder={false} />
+						<Header />
+						{children}
+					</NavbarProvider>
 				</AppProvider>
 			</body>
 		</html>
