@@ -1,8 +1,11 @@
 import { FiHome, FiList, FiSettings } from "react-icons/fi";
 
-import { NavbarProps } from "@/interfaces/NavbarProps";
+import { useContext } from "react";
+import { NavbarContext } from "@/context/NavbarContext";
 
-export const Navbar = ({ handleClick }: NavbarProps) => {
+export const Navbar = () => {
+	const { handleClick } = useContext(NavbarContext);
+
 	return (
 		<nav className="fixed bottom-0 left-0 w-full bg-yellow px-4 py-2 lg:hidden">
 			<ul className="flex flex-row justify-center items-center gap-8 ">

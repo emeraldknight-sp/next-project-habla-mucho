@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Image from "next/image";
 
 import { FiEdit, FiFileText, FiHeart, FiInfo } from "react-icons/fi";
 
-import { SidebarRightProps } from "@/interfaces/sidebarRightProps";
+import { NavbarContext } from "@/context/NavbarContext";
 
-export const SidebarRight = ({ showSidebarRight }: SidebarRightProps) => {
+export const SidebarRight = () => {
+	const { showSidebarRight } = useContext(NavbarContext);
+
 	return (
 		<div
 			className={`fixed top-14 w-full h-screen transition-all duration-300 ${
 				showSidebarRight ? "translate-x-0" : "translate-x-full"
-			} bg-white flex flex-col`}
+			} bg-white flex flex-col lg:right-0 lg:translate-x-0 lg:w-72`}
 		>
 			<div className="flex flex-col items-center gap-2 p-4">
 				<figure>
