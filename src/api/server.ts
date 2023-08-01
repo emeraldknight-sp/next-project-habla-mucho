@@ -2,9 +2,10 @@ import toast from "react-hot-toast";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { FirebaseConfig } from "@/interfaces/FirebaseConfig";
 
-const firebaseConfig = {
-	apiKey: "AIzaSyBmXwsD17wuHfTBvqJpB38_7gpiiy-36gk",
+const firebaseConfig: FirebaseConfig = {
+	apiKey: process.env.API_KEY,
 	authDomain: "next-project-habla-mucho.firebaseapp.com",
 	projectId: "next-project-habla-mucho",
 	storageBucket: "next-project-habla-mucho.appspot.com",
@@ -24,7 +25,6 @@ export const getChats = async () => {
 
 		return chatsList;
 	} catch (error: unknown) {
-    toast.error(`Erro ao obter os chats: ${error}`);
 		console.error("Erro ao obter os chats:", error);
 		return [];
 	}
