@@ -1,42 +1,52 @@
 "use client";
 
-import React, { useEffect } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 import { Main } from "@/components/Main";
 
-import { chatData } from "@/mock/chatData";
-import { useApp } from "@/context/AppContext";
+import { DocumentData } from "@firebase/firestore-types";
+import { optionsData } from "@/mock/optionsData";
+import { getChats } from "@/api";
+
+import { AppContext } from "@/context/AppContext";
 
 export default function Dialog() {
-	const { language, peopleCount, setLanguage, setPeopleCount } = useApp();
+	const { language, peopleCount } = useContext(AppContext);
+	const [data, setData] = useState<DocumentData[]>([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const storedLanguage = localStorage.getItem("selectedLanguage");
-		const storedPeopleCount = localStorage.getItem("selectedPeopleCount");
+		const fetchData = async () => {
+			try {
+				const chats = await getChats();
+				localStorage.setItem("data", JSON.stringify(chats));
+				setData(chats);
+			} catch (error) {
+				console.error("Erro ao obter os chats:", error);
+				setData(optionsData);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-		console.log(storedLanguage, storedPeopleCount);
-
-		if (storedLanguage) {
-			setLanguage(storedLanguage);
-		}
-
-		if (storedPeopleCount) {
-			setPeopleCount(storedPeopleCount);
-		}
+		fetchData();
 	}, []);
 
-	const filteredChats = chatData.filter(
+	if (loading) {
+		return <div className="text-black">Carregando...</div>;
+	}
+
+	const chats = data.filter(
 		(element) =>
-			language === element.language && Number(peopleCount) === element.people,
+			element.language === language && element.people === peopleCount,
 	);
 
-	const index = Math.floor(Math.random() * filteredChats.length);
+	const index = Math.floor(Math.random() * chats.length);
 
 	return (
-		<div className="flex flex-row my-14">
-			<Main>
-				{chatData[index].dialog.map((element, index) => {
-					return (
+		<>
+			<div className="flex flex-row my-14">
+				<Main>
+					{chats[index].dialog.map((element: DocumentData, index: number) => (
 						<div
 							key={index}
 							className={`flex flex-row ${
@@ -51,9 +61,9 @@ export default function Dialog() {
 								{element.message}
 							</p>
 						</div>
-					);
-				})}
-			</Main>
-		</div>
+					))}
+				</Main>
+			</div>
+		</>
 	);
 }
