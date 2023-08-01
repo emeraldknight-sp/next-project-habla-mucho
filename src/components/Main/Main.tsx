@@ -1,10 +1,9 @@
+import { ComponentProps } from "@/interfaces/ComponentProps";
 import { Container } from "../Container";
 
-import { MainProps } from "@/interfaces/MainProps";
-
-export const Main = ({ children }: MainProps) => {
+export const Main = ({ children }: ComponentProps) => {
 	return (
-		<main className="flex flex-1 flex-row items-center justify-center p-4">
+		<main className="flex flex-1 flex-row items-start justify-center p-4">
 			<Container>{children}</Container>
 		</main>
 	);
