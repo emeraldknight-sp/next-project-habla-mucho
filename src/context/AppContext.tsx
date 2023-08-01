@@ -1,9 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 import { AppContextProps } from "@/interfaces/AppContextProps";
-import { AppProviderProps } from "@/interfaces/AppProviderProps";
+import { ComponentProps } from "@/interfaces/ComponentProps";
 
 const AppContext = createContext<AppContextProps>({
 	language: "",
@@ -12,7 +12,7 @@ const AppContext = createContext<AppContextProps>({
 	setPeopleCount: () => 0,
 });
 
-function AppProvider({ children }: AppProviderProps) {
+function AppProvider({ children }: ComponentProps) {
 	const [language, setLanguage] = useState("");
 	const [peopleCount, setPeopleCount] = useState(0);
 
@@ -38,12 +38,12 @@ function AppProvider({ children }: AppProviderProps) {
 	);
 }
 
-function useApp() {
-	const context = useContext(AppContext);
-	if (!context) {
-		throw new Error("useApp deve ser usado dentro de um AppProvider");
-	}
-	return context;
-}
+// function useApp() {
+// 	const context = useContext(AppContext);
+// 	if (!context) {
+// 		throw new Error("useApp deve ser usado dentro de um AppProvider");
+// 	}
+// 	return context;
+// }
 
-export { AppProvider, useApp };
+export { AppProvider, AppContext };
