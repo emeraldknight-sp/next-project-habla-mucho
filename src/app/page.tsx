@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
 import { FiCalendar, FiSearch } from "react-icons/fi";
 import moment from "moment";
@@ -11,28 +11,13 @@ import "moment/locale/pt-br";
 import { Main } from "@/components/Main";
 import { Navbar } from "@/components/Navbar";
 import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
-
-import { AppProvider } from "@/context/AppContext";
+import { UsersContext } from "@/context/UsersContext";
 
 export default function Home() {
 	const date = moment().format("LL");
 	const router = useRouter();
 
-	const [showSidebarLeft, setShowSidebarLeft] = useState(false);
-	const [showSidebarRight, setShowSidebarRight] = useState(false);
-
-	const handleClick = (side: string) => {
-		if (side === "left") {
-			setShowSidebarLeft(!showSidebarLeft);
-			setShowSidebarRight(false);
-		} else if (side === "right") {
-			setShowSidebarRight(!showSidebarRight);
-			setShowSidebarLeft(false);
-		} else {
-			setShowSidebarLeft(false);
-			setShowSidebarRight(false);
-		}
-	};
+	const { avatar, firstName } = useContext(UsersContext);
 
 	const optionsDialogs = [
 		{
@@ -81,7 +66,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="flex flex-row my-14">
-				<SidebarLeft showSidebarLeft={showSidebarLeft} />
+				<SidebarLeft />
 				<Main>
 					<div className="bg-white rounded-md p-2 mb-4">
 						<div className="flex flex-row items-center justify-between mb-2 lg:hidden">
@@ -93,16 +78,18 @@ export default function Home() {
 									{date}
 								</p>
 								<p className="text-sm md:text-md">
-									Olá! Que bom te ver por aqui
+									Olá! Que bom te ver, {`${firstName}`}!
 								</p>
 							</div>
 							<figure>
 								<Image
-									src="/avatar.png"
+									src={`${avatar}`}
 									className="rounded-full shadow-md"
 									width={40}
 									height={40}
-									alt="avatar profile"
+									quality={40}
+									alt="Image"
+									key={`${firstName.toLowerCase()}-image`}
 								/>
 							</figure>
 						</div>
@@ -112,7 +99,11 @@ export default function Home() {
 								className="bg-transparent text-sm outline-none w-full"
 								placeholder="Buscar..."
 							/>
-							<button type="button" className="outline-none">
+							<button
+								type="button"
+								className="outline-none"
+								aria-label="click here to search something"
+							>
 								<span>
 									<FiSearch size={24} />
 								</span>
@@ -139,6 +130,7 @@ export default function Home() {
 												width={64}
 												height={64}
 												alt="icon"
+												priority
 											/>
 										</figure>
 										<span>{dialog.title}</span>
@@ -148,9 +140,9 @@ export default function Home() {
 						</ul>
 					</nav>
 				</Main>
-				<SidebarRight showSidebarRight={showSidebarRight} />
+				<SidebarRight />
 			</div>
-			<Navbar handleClick={handleClick} />
+			<Navbar />
 		</>
 	);
 }

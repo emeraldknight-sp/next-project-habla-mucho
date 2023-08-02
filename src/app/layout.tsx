@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 
 import { Toaster } from "react-hot-toast";
 import { Header } from "@/components/Header";
+
 import { AppProvider } from "@/context/AppContext";
+import { NavbarProvider } from "@/context/NavbarContext";
+import { UsersProvider } from "@/context/UsersContext";
 
 import "./globals.css";
-import { NavbarProvider } from "@/context/NavbarContext";
 
 export const metadata: Metadata = {
 	title: "Project Habla Mucho",
@@ -22,9 +24,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
 			<body>
 				<AppProvider>
 					<NavbarProvider>
-						<Toaster position="bottom-center" reverseOrder={false} />
-						<Header />
-						{children}
+						<UsersProvider>
+							<Toaster position="bottom-center" reverseOrder={false} />
+							<Header />
+							{children}
+						</UsersProvider>
 					</NavbarProvider>
 				</AppProvider>
 			</body>
