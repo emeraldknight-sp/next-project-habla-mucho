@@ -49,6 +49,7 @@ export const SidebarLeft = () => {
 							onClick={() =>
 								option.id === "EN" ? handleLanguageChange(option.id) : notify()
 							}
+							aria-label="a button to select a language"
 						>
 							<figure>
 								<Image
@@ -80,6 +81,7 @@ export const SidebarLeft = () => {
 							onClick={() =>
 								2 === option ? handlePeopleCountChange(option) : notify()
 							}
+							aria-label="a button to select amount people"
 						>
 							<span className="text-md font-bold">{option} pessoas</span>
 						</button>

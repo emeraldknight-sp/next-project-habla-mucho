@@ -5,9 +5,14 @@ import Image from "next/image";
 import { FiEdit, FiFileText, FiHeart, FiInfo } from "react-icons/fi";
 
 import { NavbarContext } from "@/context/NavbarContext";
+import { UsersContext } from "@/context/UsersContext";
 
 export const SidebarRight = () => {
 	const { showSidebarRight } = useContext(NavbarContext);
+
+	const { avatar, firstName, lastName, occupation } = useContext(UsersContext);
+
+	const nickname = `${firstName.toLowerCase()}${lastName.toLowerCase()}`;
 
 	return (
 		<div
@@ -18,21 +23,25 @@ export const SidebarRight = () => {
 			<div className="flex flex-col items-center gap-2 p-4">
 				<figure>
 					<Image
-						src="/avatar.png"
+						src={`${avatar}`}
 						className="rounded-full ring-2 ring-green"
 						width={100}
 						height={100}
-						alt="avatar profile"
+						quality={100}
+						alt="Image"
+						key={`${firstName.toLowerCase()}-image`}
+						priority
 					/>
 				</figure>
-				<div className="flex flex-col items-center gap-1">
-					<p className="text-md font-bold">John Doe</p>
-					<p className="text-sm">@johndoe</p>
-					<p className="text-sm">Software Engineer</p>
+				<div className="flex flex-col items-center">
+					<p className="text-md font-bold">{`${firstName} ${lastName}`}</p>
+					<p className="text-sm">@{`${nickname}`}</p>
+					<p className="text-sm">{`${occupation}`}</p>
 				</div>
 				<button
 					type="button"
 					className="flex flex-row items-center justify-center gap-1 ring-1 ring-black p-2  rounded-full"
+					aria-label="click here to edit profile"
 				>
 					<FiEdit size={16} />
 					<span className="text-black text-xs">Editar perfil</span>
