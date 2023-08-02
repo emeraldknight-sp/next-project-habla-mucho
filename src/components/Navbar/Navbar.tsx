@@ -13,6 +13,7 @@ export const Navbar = () => {
 					type="button"
 					className="bg-white text-yellow p-2 rounded-full"
 					onClick={() => handleClick("left")}
+					aria-label="click here to select your language and other settings"
 				>
 					<FiList size={24} />
 				</button>
@@ -20,6 +21,7 @@ export const Navbar = () => {
 					type="button"
 					className="bg-white text-yellow rounded-full shadow-lg p-2"
 					onClick={() => handleClick("")}
+					aria-label="click here to see the home page"
 				>
 					<FiHome size={24} />
 				</button>
@@ -27,6 +29,7 @@ export const Navbar = () => {
 					type="button"
 					className="bg-white text-yellow rounded-full shadow-lg p-2"
 					onClick={() => handleClick("right")}
+					aria-label="click here to see your account details"
 				>
 					<FiSettings size={24} />
 				</button>
