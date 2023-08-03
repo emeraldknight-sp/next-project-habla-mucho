@@ -1,13 +1,15 @@
-"use client"
+"use client";
 
 import { FiHome, FiList, FiSettings } from "react-icons/fi";
 
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { NavbarContext } from "@/context/NavbarContext";
 
 export const Navbar = () => {
 	const { handleClick } = useContext(NavbarContext);
 	const [isClient, setIsClient] = useState(false);
+	const router = useRouter()
 
 	useEffect(() => {
 		setIsClient(true);
@@ -27,7 +29,10 @@ export const Navbar = () => {
 				<button
 					type="button"
 					className="bg-white text-yellow rounded-full shadow-lg p-2"
-					onClick={() => handleClick("")}
+					onClick={() => {
+						router.push("/");
+						handleClick("");
+					}}
 					aria-label="click here to see the home page"
 				>
 					<FiHome size={24} />
