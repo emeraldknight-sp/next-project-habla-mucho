@@ -8,6 +8,8 @@ import { optionsData } from "@/mock/optionsData";
 import { getChats } from "@/api";
 
 import { AppContext } from "@/context/AppContext";
+import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
+import { Navbar } from "@/components/Navbar";
 
 export default function Dialog() {
 	const { language, peopleCount } = useContext(AppContext);
@@ -45,6 +47,7 @@ export default function Dialog() {
 	return (
 		<>
 			<div className="flex flex-row my-14">
+				<SidebarLeft />
 				<Main>
 					{chats[index].dialog.map((element: DocumentData, index: number) => (
 						<div
@@ -63,7 +66,9 @@ export default function Dialog() {
 						</div>
 					))}
 				</Main>
+				<SidebarRight />
 			</div>
+			<Navbar />
 		</>
 	);
 }
