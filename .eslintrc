@@ -6,16 +6,14 @@
 		"jest": true
 	},
 	"extends": [
+		"next",
 		"eslint:recommended",
-		"plugin:import/errors",
-		"plugin:react/recommended",
-		"plugin:jsx-a11y/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"prettier"
 	],
 	"overrides": [
 		{
-			"files": ["*.ts", "*.tsx", "*.js", "*jsx"],
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
 			"parser": "@typescript-eslint/parser",
 			"parserOptions": {
 				"ecmaVersion": 2021,
