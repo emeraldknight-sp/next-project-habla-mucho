@@ -11,7 +11,8 @@ import { AppContext } from "@/context/AppContext";
 import { NavbarContext } from "@/context/NavbarContext";
 
 export const SidebarLeft = () => {
-	const { language, peopleCount, setLanguage, setPeopleCount } = useContext(AppContext);
+	const { language, peopleCount, setLanguage, setPeopleCount } =
+		useContext(AppContext);
 	const { showSidebarLeft } = useContext(NavbarContext);
 
 	const handleLanguageChange = (selectedLanguage: string) => {

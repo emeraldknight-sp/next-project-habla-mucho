@@ -1,5 +1,3 @@
-import toast from "react-hot-toast";
-
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 import { FirebaseConfig } from "@/interfaces/FirebaseConfig";
@@ -29,4 +27,3 @@ export const getChats = async () => {
 		return [];
 	}
 };
-
