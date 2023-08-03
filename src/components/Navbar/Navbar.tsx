@@ -1,12 +1,19 @@
+"use client"
+
 import { FiHome, FiList, FiSettings } from "react-icons/fi";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavbarContext } from "@/context/NavbarContext";
 
 export const Navbar = () => {
 	const { handleClick } = useContext(NavbarContext);
+	const [isClient, setIsClient] = useState(false);
 
-	return (
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
+
+	return isClient ? (
 		<nav className="fixed bottom-0 left-0 w-full bg-yellow px-4 py-2 lg:hidden">
 			<ul className="flex flex-row justify-center items-center gap-8 ">
 				<button
@@ -35,5 +42,5 @@ export const Navbar = () => {
 				</button>
 			</ul>
 		</nav>
-	);
+	) : null;
 };

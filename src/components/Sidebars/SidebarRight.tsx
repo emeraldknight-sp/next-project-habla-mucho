@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+"use client"
+
+import React, { useContext, useEffect, useState } from "react";
 
 import Image from "next/image";
 
@@ -14,7 +16,13 @@ export const SidebarRight = () => {
 
 	const nickname = `${firstName.toLowerCase()}${lastName.toLowerCase()}`;
 
-	return (
+	const [isClient, setIsClient] = useState(false);
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
+
+	return isClient ? (
 		<div
 			className={`fixed top-14 w-full h-screen transition-all duration-300 ${
 				showSidebarRight ? "translate-x-0" : "translate-x-full"
@@ -76,5 +84,5 @@ export const SidebarRight = () => {
 				</ul>
 			</div>
 		</div>
-	);
+	) : null;
 };
