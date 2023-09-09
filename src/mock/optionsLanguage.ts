@@ -1,6 +1,6 @@
-import { optionLanguage } from "@/interfaces/optionLanguage";
+import { OptionLanguage } from "@/interfaces/OptionLanguageProps";
 
-export const optionsLanguage: optionLanguage[] = [
+export const optionsLanguage: OptionLanguage[] = [
 	{
 		icon: "/brazil.png",
 		language: "Português",

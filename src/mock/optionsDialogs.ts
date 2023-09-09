@@ -1,6 +1,6 @@
-import { optionDialog } from "@/interfaces/optionDialog";
+import { OptionDialog } from "@/interfaces/OptionDialogProps";
 
-export const optionsDialogs: optionDialog[] = [
+export const optionsDialogs: OptionDialog[] = [
 	{
 		title: "Aleatório",
 		url: "random",
