@@ -11,7 +11,7 @@ import { AppContext } from "./AppContext";
 
 export const ChatContext = createContext({
 	chat: optionsData[0],
-	loading: true
+	loading: true,
 });
 
 export const ChatProvider = ({ children }: ComponentProps) => {
@@ -19,15 +19,15 @@ export const ChatProvider = ({ children }: ComponentProps) => {
 
 	const [data, setData] = useState<DocumentData[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
-		const searchParams = useSearchParams();
-		const search = searchParams.get("d");
+	const searchParams = useSearchParams();
+	const search = searchParams.get("d");
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const chats = await getChats();
 				localStorage.setItem("data", JSON.stringify(chats));
-				setData(chats || localStorage.setItem("data", JSON.stringify(chats)));
+				setData(chats);
 			} catch (error) {
 				console.error("Erro ao obter os chats:", error);
 				setData(optionsData);
@@ -47,6 +47,8 @@ export const ChatProvider = ({ children }: ComponentProps) => {
 		);
 	const chatIndex = Math.floor(Math.random() * chats.length);
 	const chat = chats[chatIndex];
+
+	console.log("DATA", data);
 
 	return (
 		<ChatContext.Provider value={{ chat, loading }}>
