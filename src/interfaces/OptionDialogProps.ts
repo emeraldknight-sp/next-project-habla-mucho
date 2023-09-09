@@ -1,4 +1,4 @@
-export interface optionDialog {
+export interface OptionDialog {
 	title: string;
 	url: string,
 	icon: string;
