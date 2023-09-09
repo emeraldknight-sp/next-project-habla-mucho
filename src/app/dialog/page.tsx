@@ -54,7 +54,7 @@ export default function Dialog() {
 								</figure>
 
 								<div
-									className={`px-2 py-1 w-60 rounded-md shadow-sm  ${
+									className={`px-2 py-1 w-60 md:w-96 rounded-md shadow-sm  ${
 										element.user === 1 ? "bg-green" : "bg-white"
 									}`}
 								>
