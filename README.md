@@ -5,10 +5,10 @@ Um projeto desenvolvido para aprendizado de novos idiomas feito com Next.js, Tai
 </p>
 
 <p align="center">
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-licenca">Licença</a>
+  <a href="#technologies">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#project">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#license">Licença</a>
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@ Um projeto desenvolvido para aprendizado de novos idiomas feito com Next.js, Tai
 
 ## 🚀 Tecnologias
 
-<a id="tecnologias"></a>
+<a id="technologies"></a>
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -34,10 +34,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Create next-app](https://nextjs.org/docs/api-reference/create-next-app)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Google Firebase](https://firebase.google.com/?hl=pt)
 
 ## 💻 Projeto
 
-<a id="projeto"></a>
+<a id="project"></a>
 
 ### Qual é o objetivo principal do sistema?
 
@@ -67,7 +68,7 @@ Os principais objetivos do sistema incluem:
 
 ## 🏡 Comandos de execução no projeto
 
-<a id="projeto"></a>
+<a id="project"></a>
 
 Instalação das dependências do projeto
 
@@ -81,18 +82,6 @@ Teste da aplicação em ambiente de desenvolvimento
 yarn dev
 ```
 
-Build da aplicação
-
-```sh
-yarn build
-```
-
-Teste da aplicação em ambiente de produção
-
-```sh
-yarn start
-```
-
 ## 🔖 Layout
 
 <a id="layout"></a>
@@ -101,11 +90,10 @@ yarn start
   <img alt="design" src=".github/design.png" width="100%">
 </p>
 
-
 Você pode visualizar o layout do projeto clicando [aqui](https://www.figma.com/file/9d4kIYr9YjwmRCHGv7O9gR/Project-Habla-Mucho?type=design&node-id=26%3A634&mode=design&t=BWskA3IieLK9ytOi-1). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 ## 📝 Licença
 
-<a id="licenca"></a>
+<a id="license"></a>
 
 Esse projeto está sob a licença MIT.
