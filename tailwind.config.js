@@ -30,8 +30,10 @@ module.exports = {
 			cyan: "#22D3EE",
 		},
 		fontFamily: {
-			sans: ["Lato", "sans-serif"],
-			serif: ["Merriweather", "serif"],
+			sans: ["var(--font-open-sans)"],
+			serif: ["var(--font-raleway)"],
+			body: ["var(--font-open-sans)"],
+			title: ["var(--font-raleway)"],
 		},
 		extend: {
 			backgroundImage: {
