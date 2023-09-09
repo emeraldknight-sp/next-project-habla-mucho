@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore/lite";
 import { FirebaseConfig } from "@/interfaces/FirebaseConfig";
 
 const firebaseConfig: FirebaseConfig = {
@@ -25,5 +25,26 @@ export const getChats = async () => {
 	} catch (error: unknown) {
 		console.error("Erro ao obter os chats:", error);
 		return [];
+	}
+};
+
+export const setChat = async (chat: {
+	id: number;
+	title: string;
+	category: string;
+	language: string;
+	people: number;
+	size: string;
+	dialog: {
+		user: number;
+		message: string;
+	}[];
+}) => {
+	try {
+		const chatsCol = collection(db, "dialogs");
+		await addDoc(chatsCol, chat);
+		console.log("Diálogo enviado para o Firebase:", chat);
+	} catch (error) {
+		console.error("Erro ao enviar o diálogo para o Firebase:", error);
 	}
 };
