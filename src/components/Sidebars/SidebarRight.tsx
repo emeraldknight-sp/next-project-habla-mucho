@@ -26,7 +26,7 @@ export const SidebarRight = () => {
 		<div
 			className={`fixed top-14 w-full h-screen transition-all duration-300 ${
 				showSidebarRight ? "translate-x-0" : "translate-x-full"
-			} bg-white flex flex-col lg:right-0 lg:translate-x-0 lg:w-72`}
+			} bg-white flex flex-col lg:right-0 lg:translate-x-0 lg:w-72 lg:border-l lg:border-solid lg:border-lightGray`}
 		>
 			<div className="flex flex-col items-center gap-2 p-4">
 				<figure>

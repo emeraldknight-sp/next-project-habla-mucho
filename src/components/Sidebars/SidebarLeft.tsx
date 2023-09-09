@@ -39,8 +39,8 @@ export const SidebarLeft = () => {
 	return isClient ? (
 		<div
 			className={`flex flex-col fixed top-14 w-full h-screen transition-all duration-300 ${
-				showSidebarLeft ? "translate-x-0" : "-translate-x-full"
-			} bg-white lg:translate-x-0 lg:w-72 lg:left-0`}
+				showSidebarLeft ? "translate-x-0 " : "-translate-x-full"
+			} bg-white lg:translate-x-0 lg:w-72 lg:left-0 lg:border-r lg:border-solid lg:border-lightGray`}
 		>
 			<div className="flex flex-col">
 				<div className="px-4 pt-2">
