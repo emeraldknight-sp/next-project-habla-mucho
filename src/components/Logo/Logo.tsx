@@ -12,7 +12,7 @@ export const Logo = () => {
 					alt="Logo"
 					className="shadow-xl rounded-full"
 				/>
-				<h1 className="text-xl text-white">Project HablaMucho</h1>
+				<h1 className="font-title text-xl font-semibold text-white">Project HablaMucho</h1>
 			</Link>
 		</div>
 	);
