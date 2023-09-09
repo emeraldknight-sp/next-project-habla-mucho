@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { Header } from "@/components/Header";
 
 import { AppProvider } from "@/context/AppContext";
+import { ChatProvider } from "@/context/ChatContext";
 import { NavbarProvider } from "@/context/NavbarContext";
 import { UsersProvider } from "@/context/UsersContext";
 
@@ -71,9 +72,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				<AppProvider>
 					<NavbarProvider>
 						<UsersProvider>
-							<Toaster position="bottom-center" reverseOrder={false} />
-							<Header />
-							{children}
+							<ChatProvider>
+								<Toaster position="bottom-center" reverseOrder={false} />
+								<Header />
+								{children}
+							</ChatProvider>
 						</UsersProvider>
 					</NavbarProvider>
 				</AppProvider>
