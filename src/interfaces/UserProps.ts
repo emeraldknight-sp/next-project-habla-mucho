@@ -3,5 +3,6 @@ export interface UserProps {
 	firstName: string;
 	lastName: string;
 	avatar: string;
+	nickname: string;
 	occupation: string;
 }

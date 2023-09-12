@@ -6,6 +6,7 @@ export const usersData: UserProps[] = [
 		firstName: "Walter",
 		lastName: "White",
 		avatar: "/heisenberg.webp",
+		nickname: "walterwhite",
 		occupation: "Professor",
 	},
 	{
@@ -13,6 +14,7 @@ export const usersData: UserProps[] = [
 		firstName: "Jesse",
 		lastName: "Pinkman",
 		avatar: "/jesse.webp",
+		nickname: "jessepinkman",
 		occupation: "Estudante",
 	},
 	{
@@ -20,6 +22,7 @@ export const usersData: UserProps[] = [
 		firstName: "Jane",
 		lastName: "Margolis",
 		avatar: "/jane.webp",
+		nickname: "janemargolis",
 		occupation: "",
 	},
 	{
@@ -27,6 +30,7 @@ export const usersData: UserProps[] = [
 		firstName: "Saul",
 		lastName: "Goodman",
 		avatar: "/jimmy.webp",
+		nickname: "saulgoodman",
 		occupation: "Advogado",
 	},
 	{
@@ -34,6 +38,7 @@ export const usersData: UserProps[] = [
 		firstName: "Mike",
 		lastName: "Ehrmantraut",
 		avatar: "/ehrmantraut.webp",
+		nickname: "mikeehrmantraut",
 		occupation: "Investigador",
 	},
 	{
@@ -41,6 +46,7 @@ export const usersData: UserProps[] = [
 		firstName: "Gustavo",
 		lastName: "Fring",
 		avatar: "/gus.webp",
+		nickname: "gustavofring",
 		occupation: "Empresário",
 	},
 ];

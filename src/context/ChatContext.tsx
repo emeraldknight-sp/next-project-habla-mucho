@@ -48,8 +48,6 @@ export const ChatProvider = ({ children }: ComponentProps) => {
 	const chatIndex = Math.floor(Math.random() * chats.length);
 	const chat = chats[chatIndex];
 
-	console.log("DATA", data);
-
 	return (
 		<ChatContext.Provider value={{ chat, loading }}>
 			{children}
