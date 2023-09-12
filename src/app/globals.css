@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--white: #ffffff;
+	--black: #000000;
+	--transparent: transparent;
+	--darkGray: #344a5f;
+	--lightGray: #f0f1f3;
+	--lightBlue: #63cbe6;
+	--blue: #2295d8;
+	--red: #ef4444;
+	--lightYellow: #fcd34d;
+	--yellow: #f59e0b;
+	--green: #10b981;
+	--purple: #8b5cf6;
+	--pink: #ec6f91;
+	--orange: #f97316;
+	--teal: #14b8a6;
+	--cyan: #22d3ee;
+}
+
+/* Arquivo CSS personalizado, por exemplo, styles.css */
+
+/* Estilizar a barra de rolagem */
+::-webkit-scrollbar {
+	width: 8px; /* Largura da barra de rolagem */
+}
+
+/* Estilizar o indicador (thumb) da barra de rolagem */
+::-webkit-scrollbar-thumb {
+	background-color: var(--green); /* Cor do indicador da barra de rolagem */
+	border-radius: 4px; /* Raio das bordas do indicador */
+}
+
+/* Estilizar a trilha (track) da barra de rolagem */
+::-webkit-scrollbar-track {
+	background-color: #f1f1f1; /* Cor da trilha da barra de rolagem */
+}
