@@ -1,6 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
+
+import { NavbarContext } from "@/context/NavbarContext";
+import { AppContext } from "@/context/AppContext";
+import { UsersContext } from "@/context/UsersContext";
+
+import { Profile } from "../Profile";
 
 import {
 	FiFileText,
@@ -10,23 +17,13 @@ import {
 	FiMoon,
 	FiSun,
 } from "react-icons/fi";
-
-import { NavbarContext } from "@/context/NavbarContext";
-import { AppContext } from "@/context/AppContext";
-import { Profile } from "../Profile";
-import Image from "next/image";
-import { UserProps } from "@/interfaces/UserProps";
-import { usersData } from "@/mock/usersData";
-import { UsersContext } from "@/context/UsersContext";
+import { User } from "@/interfaces/Options";
+import { mockUsers } from "@/mock/appData";
 
 export const SidebarRight = () => {
 	const { showSidebarRight } = useContext(NavbarContext);
 
-	const { theme, setTheme } = useContext(AppContext);
-
-	const changeTheme = () => {
-		setTheme(!theme);
-	};
+	const { selectedTheme, handleThemeChange } = useContext(AppContext);
 
 	const [openOption, setOpenOption] = useState(0);
 
@@ -40,8 +37,8 @@ export const SidebarRight = () => {
 
 	const { firstName } = useContext(UsersContext);
 
-	const listFriend: UserProps[] = usersData.filter(
-		(element) => element.firstName !== firstName,
+	const listFriend: User[] = mockUsers.filter(
+		(user) => user.firstName !== firstName,
 	);
 
 	// const listFriend: UserProps[] = [];
@@ -125,7 +122,7 @@ export const SidebarRight = () => {
 					</li>
 					<li className="flex flex-row justify-between py-2 border-b-2 border-lightGray">
 						<div className="flex flex-row justify-start items-center gap-2">
-							{theme ? (
+							{selectedTheme ? (
 								<FiMoon size={16} className="duration-300" />
 							) : (
 								<FiSun size={16} className="duration-300" />
@@ -136,11 +133,11 @@ export const SidebarRight = () => {
 							<button
 								type="button"
 								className="w-8 h-4 p bg-lightGray rounded-full outline-none"
-								onClick={changeTheme}
+								onClick={handleThemeChange}
 							>
 								<div
 									className={`bg-green w-3 h-3 rounded-full shadow-md transition-transform transform duration-300 ${
-										theme ? "translate-x-4" : "translate-x-1"
+										selectedTheme ? "translate-x-4" : "translate-x-1"
 									}`}
 								></div>
 							</button>
