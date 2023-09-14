@@ -27,6 +27,7 @@ export interface User {
 	id: number;
 	firstName: string;
 	lastName: string;
+	nickname: string;
 	avatar: string;
 	occupation: string;
 }
