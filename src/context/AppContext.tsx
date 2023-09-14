@@ -2,48 +2,80 @@
 
 import React, { createContext, useEffect, useState } from "react";
 
-import { AppContextProps } from "@/interfaces/AppContextProps";
 import { ComponentProps } from "@/interfaces/ComponentProps";
+import {
+	AppContextProps,
+	OptionsDifficulty,
+	OptionsLanguage,
+	OptionsPeopleCount,
+} from "@/interfaces/AppContextProps";
 
 const AppContext = createContext<AppContextProps>({
-	language: "",
-	peopleCount: 0,
-	setLanguage: () => "",
-	setPeopleCount: () => 0,
+	selectedLanguage: "EN",
+	selectedPeopleCount: 2,
+	selectedDifficulty: "easy",
+	handleLanguageChange: () => "",
+	handlePeopleCountChange: () => 0,
+	handleDifficultyChange: () => "",
 });
 
 function AppProvider({ children }: ComponentProps) {
-	const [language, setLanguage] = useState("");
-	const [peopleCount, setPeopleCount] = useState(0);
+	const [selectedLanguage, setSelectedLanguage] =
+		useState<OptionsLanguage>("EN");
+
+	const [selectedPeopleCount, setSelectedPeople] =
+		useState<OptionsPeopleCount>(2);
+		
+	const [selectedDifficulty, setSelectedDifficulty] =
+		useState<OptionsDifficulty>("easy");
+
+	const handleLanguageChange = (selectedLanguage: OptionsLanguage) => {
+		setSelectedLanguage(selectedLanguage);
+		localStorage.setItem("selectedLanguage", selectedLanguage);
+	};
+
+	const handlePeopleCountChange = (selectedPeopleCount: OptionsPeopleCount) => {
+		setSelectedPeople(selectedPeopleCount);
+		localStorage.setItem("selectedPeopleCount", selectedPeopleCount.toString());
+	};
+
+	const handleDifficultyChange = (selectedDifficulty: OptionsDifficulty) => {
+		setSelectedDifficulty(selectedDifficulty);
+		localStorage.setItem("selectedDifficulty", selectedDifficulty);
+	};
 
 	useEffect(() => {
 		const storedLanguage = localStorage.getItem("selectedLanguage");
 		const storedPeopleCount = localStorage.getItem("selectedPeopleCount");
+		const storedDifficulty = localStorage.getItem("selectedDifficulty");
 
 		if (storedLanguage) {
-			setLanguage(storedLanguage);
+			setSelectedLanguage(storedLanguage as OptionsLanguage);
 		}
 
 		if (storedPeopleCount) {
-			setPeopleCount(Number(storedPeopleCount));
+			setSelectedPeople(Number(storedPeopleCount) as OptionsPeopleCount);
+		}
+
+		if (storedDifficulty) {
+			setSelectedDifficulty(storedDifficulty as OptionsDifficulty);
 		}
 	}, []);
 
 	return (
 		<AppContext.Provider
-			value={{ language, peopleCount, setLanguage, setPeopleCount }}
+			value={{
+				selectedLanguage,
+				selectedPeopleCount,
+				selectedDifficulty,
+				handleLanguageChange,
+				handlePeopleCountChange,
+				handleDifficultyChange,
+			}}
 		>
 			{children}
 		</AppContext.Provider>
 	);
 }
-
-// function useApp() {
-// 	const context = useContext(AppContext);
-// 	if (!context) {
-// 		throw new Error("useApp deve ser usado dentro de um AppProvider");
-// 	}
-// 	return context;
-// }
 
 export { AppProvider, AppContext };

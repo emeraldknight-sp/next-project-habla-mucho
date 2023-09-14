@@ -3,15 +3,16 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 
 import { ComponentProps } from "@/interfaces/ComponentProps";
-import { UserProps } from "@/interfaces/UserProps";
-import { usersData } from "@/mock/usersData";
+import { User } from "@/interfaces/Options";
 
-export const UsersContext = createContext<UserProps>(usersData[1]);
+import { mockUsers } from "@/mock/appData";
+
+export const UsersContext = createContext<User>(mockUsers[1]);
 
 export const UsersProvider = ({ children }: ComponentProps) => {
-	const [user, setUser] = useState<UserProps>(usersData[1]);
+	const [user, setUser] = useState<User>(mockUsers[1]);
 
-	const users = useMemo(() => usersData, []);
+	const users = useMemo(() => mockUsers, []);
 
 	useEffect(() => {
 		const index = Math.floor(Math.random() * users.length);
