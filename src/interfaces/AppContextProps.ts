@@ -1,6 +1,14 @@
+import { Conversation } from "./Conversation";
+
+export type OptionsLanguage = Conversation["language"]
+export type OptionsPeopleCount = Conversation["people"]
+export type OptionsDifficulty = Conversation["difficulty"]
+
 export interface AppContextProps {
-	language: string;
-	peopleCount: number;
-	setLanguage: (selectedLanguage: string) => void;
-	setPeopleCount: (selectedPeopleCount: number) => void;
+	selectedLanguage: OptionsLanguage;
+	selectedPeopleCount: OptionsPeopleCount;
+	selectedDifficulty: OptionsDifficulty;
+	handleLanguageChange: (selectedLanguage: OptionsLanguage) => void;
+	handlePeopleCountChange: (selectedPeople: OptionsPeopleCount) => void;
+	handleDifficultyChange: (selectedDifficulty: OptionsDifficulty) => void;
 }
