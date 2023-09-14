@@ -5,17 +5,17 @@ import { DocumentData } from "@firebase/firestore-types";
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { getChats } from "@/api";
-import { optionsData } from "@/mock/optionsData";
 import { useSearchParams } from "next/navigation";
 import { AppContext } from "./AppContext";
+import { mockConversations } from "@/mock/appData";
 
 export const ChatContext = createContext({
-	chat: optionsData[0],
-	loading: true,
+	chat: mockConversations[0],
+	loading: true
 });
 
 export const ChatProvider = ({ children }: ComponentProps) => {
-	const { language, peopleCount } = useContext(AppContext);
+	const { selectedLanguage, selectedPeopleCount } = useContext(AppContext);
 
 	const [data, setData] = useState<DocumentData[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -30,7 +30,7 @@ export const ChatProvider = ({ children }: ComponentProps) => {
 				setData(chats);
 			} catch (error) {
 				console.error("Erro ao obter os chats:", error);
-				setData(optionsData);
+				setData(mockConversations);
 			} finally {
 				setLoading(false);
 			}
@@ -43,7 +43,7 @@ export const ChatProvider = ({ children }: ComponentProps) => {
 		.filter((element) => element.category === search || "random" === search)
 		.filter(
 			(element) =>
-				element.language === language && element.people === peopleCount,
+				element.language === selectedLanguage && element.people === selectedPeopleCount,
 		);
 	const chatIndex = Math.floor(Math.random() * chats.length);
 	const chat = chats[chatIndex];

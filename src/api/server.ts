@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore/lite";
 import { FirebaseConfig } from "@/interfaces/FirebaseConfig";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { Conversation } from "@/interfaces/Conversation";
 
 const firebaseConfig: FirebaseConfig = {
 	apiKey: process.env.API_KEY,
@@ -28,22 +29,26 @@ export const getChats = async () => {
 	}
 };
 
-export const setChat = async (chat: {
-	id: number;
-	title: string;
-	category: string;
-	language: string;
-	people: number;
-	size: string;
-	dialog: {
-		user: number;
-		message: string;
-	}[];
-}) => {
+export const setChat = async (conversation: Conversation) => {
 	try {
-		const chatsCol = collection(db, "dialogs");
-		await addDoc(chatsCol, chat);
-		console.log("Diálogo enviado para o Firebase:", chat);
+		const parentCollection = "conversations";
+		const language = "EN";
+		const difficulty = "medium";
+		const size = "short";
+		const people = "5";
+
+		const dialogsCollectionRef = collection(
+			db,
+			parentCollection,
+			language,
+			difficulty,
+			size,
+			people,
+		);
+
+		await addDoc(dialogsCollectionRef, conversation);
+
+		console.log(`Diálogo adicionada à coleção com ${people} pessoas:`, conversation);
 	} catch (error) {
 		console.error("Erro ao enviar o diálogo para o Firebase:", error);
 	}
