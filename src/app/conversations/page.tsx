@@ -12,13 +12,13 @@ import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
 import { ChatContext } from "@/context/ChatContext";
 import { UsersContext } from "@/context/UsersContext";
 
-import { usersData } from "@/mock/usersData";
+import { mockUsers } from "@/mock/appData";
 
 export default function Dialog() {
 	const { chat, loading } = useContext(ChatContext);
 	const { firstName } = useContext(UsersContext);
 
-	const users = usersData.filter((element) => element.firstName !== firstName);
+	const users = mockUsers.filter((element) => element.firstName !== firstName);
 	const userIndex = Math.floor(Math.random() * users.length);
 	const user = users[userIndex];
 

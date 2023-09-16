@@ -12,7 +12,8 @@ import { Main } from "@/components/Main";
 import { Navbar } from "@/components/Navbar";
 import { SidebarLeft, SidebarRight } from "@/components/Sidebars";
 import { UsersContext } from "@/context/UsersContext";
-import { OptionDialog } from "@/interfaces/OptionDialogProps";
+import { MenuOption } from "@/interfaces/Options";
+
 
 export default function Home() {
 	const date = moment().format("LL");
@@ -20,7 +21,7 @@ export default function Home() {
 
 	const { avatar, firstName } = useContext(UsersContext);
 
-	const optionsDialogs: OptionDialog[] = [
+	const mockMenuOptions: MenuOption[] = [
 		{
 			title: "Aleatório",
 			url: "random",
@@ -81,7 +82,7 @@ export default function Home() {
 
 	return (
 		<>
-			<div className="flex flex-row my-14">
+			<div className="flex flex-row my-14 lg:my-0 lg:mt-14">
 				<SidebarLeft />
 				<Main>
 					<div className="bg-white rounded-md p-2 mb-4">
@@ -128,26 +129,28 @@ export default function Home() {
 					</div>
 					<nav className="flex flex-col gap-4 bg-white rounded-md p-2">
 						<ul className="grid grid-cols-2 lg:grid-cols-2 gap-4">
-							{optionsDialogs.map((dialog, index) => (
+							{mockMenuOptions.map((option, index) => (
 								<li
 									key={index}
-									className={`flex flex-row items-center justify-center bg-gradient-to-tr ${dialog.color1} ${dialog.color2} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 lg:hover:scale-95 lg:hover:brightness-90 active:brightness-90 `}
+									className={`flex flex-row items-center justify-center bg-gradient-to-tr ${option.color1} ${option.color2} text-white text-sm break-all w-auto h-32 rounded-lg cursor-pointer transition ease-in-out duration-300 lg:hover:scale-95 lg:hover:brightness-90 active:brightness-90 `}
 								>
 									<button
 										type="button"
 										className="flex flex-col items-center justify-center gap-2 outline-none"
-										onClick={() => router.push(`/dialog?d=${dialog.url}`)}
+										onClick={() =>
+											router.push(`/conversations?d=${option.url}`)
+										}
 									>
 										<figure>
 											<Image
-												src={`${dialog.icon}`}
+												src={`${option.icon}`}
 												width={64}
 												height={64}
 												alt="icon"
 												priority
 											/>
 										</figure>
-										<span>{dialog.title}</span>
+										<span>{option.title}</span>
 									</button>
 								</li>
 							))}

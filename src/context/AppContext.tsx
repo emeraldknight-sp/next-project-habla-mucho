@@ -2,61 +2,97 @@
 
 import React, { createContext, useEffect, useState } from "react";
 
-import { AppContextProps } from "@/interfaces/AppContextProps";
 import { ComponentProps } from "@/interfaces/ComponentProps";
+import {
+	AppContextProps,
+	OptionsDifficulty,
+	OptionsLanguage,
+	OptionsPeopleCount,
+} from "@/interfaces/AppContextProps";
 
 const AppContext = createContext<AppContextProps>({
-	language: "",
-	peopleCount: 0,
-	theme: false,
-	setLanguage: () => "",
-	setPeopleCount: () => 0,
-	setTheme: () => 0
+	selectedLanguage: "EN",
+	selectedPeopleCount: 2,
+	selectedDifficulty: "easy",
+	selectedTheme: false,
+	handleLanguageChange: () => "",
+	handlePeopleCountChange: () => 0,
+	handleDifficultyChange: () => "",
+	handleThemeChange: () => 0,
 });
 
 function AppProvider({ children }: ComponentProps) {
-	const [language, setLanguage] = useState("");
-	const [peopleCount, setPeopleCount] = useState(0);
-	const [theme, setTheme] = useState(false);
+	const [selectedLanguage, setSelectedLanguage] =
+		useState<OptionsLanguage>("EN");
 
-	// const changeTheme = () => {
-	// 	setDarkTheme(!darkTheme);
-	// };
+	const [selectedPeopleCount, setSelectedPeople] =
+		useState<OptionsPeopleCount>(2);
+
+	const [selectedDifficulty, setSelectedDifficulty] =
+		useState<OptionsDifficulty>("easy");
+
+	const [selectedTheme, setSelectedTheme] = useState(false);
+
+	const handleLanguageChange = (selectedLanguage: OptionsLanguage) => {
+		setSelectedLanguage(selectedLanguage);
+		localStorage.setItem("selectedLanguage", selectedLanguage);
+	};
+
+	const handlePeopleCountChange = (selectedPeopleCount: OptionsPeopleCount) => {
+		setSelectedPeople(selectedPeopleCount);
+		localStorage.setItem("selectedPeopleCount", selectedPeopleCount.toString());
+	};
+
+	const handleDifficultyChange = (selectedDifficulty: OptionsDifficulty) => {
+		setSelectedDifficulty(selectedDifficulty);
+		localStorage.setItem("selectedDifficulty", selectedDifficulty);
+	};
+
+	const handleThemeChange = () => {
+		setSelectedTheme((selectedTheme) => !selectedTheme);
+		localStorage.setItem("selectedTheme", selectedTheme ? "light" : "dark");
+	};
 
 	useEffect(() => {
 		const storedLanguage = localStorage.getItem("selectedLanguage");
 		const storedPeopleCount = localStorage.getItem("selectedPeopleCount");
+		const storedDifficulty = localStorage.getItem("selectedDifficulty");
 		const storedTheme = localStorage.getItem("selectedTheme");
 
 		
 		if (storedLanguage) {
-			setLanguage(storedLanguage);
+			setSelectedLanguage(storedLanguage as OptionsLanguage);
 		}
 		
 		if (storedPeopleCount) {
-			setPeopleCount(Number(storedPeopleCount));
+			setSelectedPeople(Number(storedPeopleCount) as OptionsPeopleCount);
+		}
+
+		if (storedDifficulty) {
+			setSelectedDifficulty(storedDifficulty as OptionsDifficulty);
 		}
 
 		if (storedTheme) {
-			setTheme(!theme)
+			setSelectedTheme(!storedTheme);
 		}
 	}, []);
 
 	return (
 		<AppContext.Provider
-			value={{ language, peopleCount, theme, setLanguage, setPeopleCount, setTheme }}
+			value={{
+				selectedLanguage,
+				selectedPeopleCount,
+				selectedDifficulty,
+				selectedTheme,
+				handleLanguageChange,
+				handlePeopleCountChange,
+				handleDifficultyChange,
+				handleThemeChange,
+			}}
 		>
 			{children}
 		</AppContext.Provider>
 	);
 }
-
-// function useApp() {
-// 	const context = useContext(AppContext);
-// 	if (!context) {
-// 		throw new Error("useApp deve ser usado dentro de um AppProvider");
-// 	}
-// 	return context;
-// }
 
 export { AppProvider, AppContext };
