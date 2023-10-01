@@ -31,25 +31,17 @@ export const getChats = async () => {
 
 export const setChat = async (conversation: Conversation) => {
 	try {
-		const parentCollection = "conversations";
-		const language = "EN";
-		const difficulty = "medium";
-		const size = "short";
-		const people = "5";
+		const language = "en";
+		const category = "travel";
+		const difficulty = "advanced";
 
-		const dialogsCollectionRef = collection(
-			db,
-			parentCollection,
-			language,
-			difficulty,
-			size,
-			people,
-		);
+		const dialogsCollectionRef = collection(db, language, category, difficulty);
 
 		await addDoc(dialogsCollectionRef, conversation);
 
-		console.log(`Diálogo adicionada à coleção com ${people} pessoas:`, conversation);
+		console.log(`Diálogo adicionada à coleção com ${category}:`, conversation);
 	} catch (error) {
 		console.error("Erro ao enviar o diálogo para o Firebase:", error);
 	}
 };
+

@@ -1,10 +1,20 @@
+"use client";
+
 import { setChat } from "@/api";
+import { Main } from "@/components/Main";
 import { conversation } from "@/mock/chat";
 
-export const admin = () => {
+export default function Admin() {
+
 	return (
-		<button type="button" onClick={() => setChat(conversation)}>
-			Enviar chat
-		</button>
+		<Main>
+			<button
+				type="button"
+				className="bg-red m-40"
+				onClick={() => setChat(conversation)}
+			>
+				Enviar chat
+			</button>
+		</Main>
 	);
-};
+}
